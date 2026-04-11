@@ -4,7 +4,8 @@
   "service": "profile",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "mounts": [
-    "source=${localWorkspaceFolder}/,target=/workspaces/${localWorkspaceFolderBasename},type=bind"
+    "source=${localWorkspaceFolder}/,target=/workspaces/${localWorkspaceFolderBasename},type=bind",
+    "source=${localEnv:HOME}/.claude,target=/mnt/host-claude,type=bind,consistency=cached"
   ],
   "customizations": {
     "vscode": {
@@ -24,8 +25,11 @@
       }
     }
   },
+  "postStartCommand": "ln -sfn /mnt/host-claude ~/.claude",
   "features": {
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:latest": {
+      "moby": false
+    },
+    "ghcr.io/anthropics/devcontainer-features/claude-code:latest": {}
   }
 }
