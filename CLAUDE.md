@@ -69,7 +69,7 @@ npm install
 ### 現在の技術スタック
 - **フロントエンド**: React 19.1.0 + TypeScript
 - **ビルドツール**: Vite 7.0.4
-- **スタイリング**: CSS (Tailwind CSS使用可能)
+- **スタイリング**: CSS (Tailwind CSSはmock/mock.htmlでのみ使用。srcへの適用は [要確認])
 - **高速リフレッシュ**: SWC (Speedy Web Compiler)
 
 ### TypeScript設定
@@ -105,12 +105,38 @@ Tailwind CSSを使用したデモページが含まれています。本格的�
 
 ## 品質保証
 
-### コード品質
-- ESLint: `npm run lint`で実行
-- TypeScript: `npm run build`で型チェック
-- Biome拡張機能が自動的にフォーマット・リント実行
+### コード品質チェックリスト (報告前に必ず全項目確認)
+
+| チェック項目 | コマンド | 合格条件 |
+|------------|---------|---------|
+| ESLint | `npm run lint` | エラー0件 |
+| TypeScript型チェック | `npm run build` | エラー0件 |
+| Biome | VS Code保存時に自動実行 | 警告0件 |
+
+**報告前に全チェックをパスすること。未確認での完了報告は禁止。**
 
 ### テスト戦略
 - ユニットテスト: Vitest推奨 (未設定)
 - E2Eテスト: Playwright推奨 (未設定)
 - 現在テストフレームワークは設定されていません
+
+## 🚨 禁止事項
+
+| 操作 | 理由 |
+|------|------|
+| `dist/` ディレクトリの手動編集 | ビルド出力は自動生成。手動変更は `npm run build` で上書きされる |
+| `mock/` ディレクトリのデータをsrcに直接コピー | 移行時は必ずReactコンポーネントとして再実装する |
+| `package.json` のバージョン直接書き換え | 必ず `npm install <pkg>` または `npm update` を使用 |
+| テストなしでのコンポーネント追加 | Vitestが未設定でも、手動動作確認を必ず実施して報告すること |
+| 存在しないパッケージのimport | 必ず `package.json` の `dependencies` / `devDependencies` に存在するか確認する |
+| `tsconfig.json` の直接編集 | `tsconfig.app.json` / `tsconfig.node.json` を目的に応じて編集する |
+
+## スキル参照
+
+複雑な作業を行う際は以下のグローバルスキルを参照すること:
+
+| スキル | 用途 | 参照タイミング |
+|--------|------|--------------|
+| `test-driven-development` | コンポーネント・ロジック実装 | 新規実装前 |
+| `systematic-debugging` | バグ調査・型エラー解消 | 原因不明のエラー発生時 |
+| `interface-first-design` | コンポーネントAPI設計 | 新規コンポーネント設計時 |
