@@ -33,7 +33,7 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.11",
+    "@biomejs/biome": "2.4.12",
     "@happy-dom/global-registrator": "^20.0.11",
     "@rollup/rollup-linux-arm64-gnu": "^4.45.1",
     "@swc/core": "^1.12.11",
