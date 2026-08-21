@@ -1,0 +1,15 @@
+---
+import type { PersonalInfo } from '../types';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  personal: PersonalInfo;
+}
+
+const { personal } = Astro.props;
+---
+
+<section id="about" class="section about" aria-labelledby="about-title">
+  <SectionHeading id="about-title" title="About" />
+  <p>{personal.about}</p>
+</section>

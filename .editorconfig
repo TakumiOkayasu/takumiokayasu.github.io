@@ -1,5 +1,4 @@
 # EditorConfig is awesome: https://EditorConfig.org
-# This file is also read by Biome for formatting configuration
 
 # top-most EditorConfig file
 root = true
@@ -11,8 +10,8 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-# TypeScript and TSX files
-[*.{ts,tsx}]
+# TypeScript files
+[*.ts]
 indent_style = space
 indent_size = 2
 max_line_length = 100
@@ -37,8 +36,8 @@ indent_style = space
 indent_size = 2
 max_line_length = 80
 
-# HTML files
-[*.html]
+# HTML and Astro files
+[*.{html,astro}]
 indent_style = space
 indent_size = 2
 max_line_length = 120

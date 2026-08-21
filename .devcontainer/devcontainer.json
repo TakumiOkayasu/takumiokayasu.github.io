@@ -1,35 +1,31 @@
 {
-  "name": "ProfilePage",
-  "dockerComposeFile": "compose.yaml",
-  "service": "profile",
+  "name": "Portfolio",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "remoteUser": "node",
+  "updateRemoteUserUID": true,
   "mounts": [
-    "source=${localWorkspaceFolder}/,target=/workspaces/${localWorkspaceFolderBasename},type=bind",
     "source=${localEnv:HOME}/.claude,target=/mnt/host-claude,type=bind,consistency=cached"
   ],
+  "postCreateCommand": "pnpm install --frozen-lockfile",
+  "postStartCommand": "ln -sfn /mnt/host-claude /home/node/.claude",
   "customizations": {
     "vscode": {
       "extensions": [
-        "pizzacat83.codic",
-        "sourcegraph.cody-ai",
-        "VisualStudioExptTeam.vscodeintellicode",
-        "ms-azuretools.vscode-containers",
-        "mikestead.dotenv",
-        "mhutchie.git-graph",
         "Anthropic.claude-code",
-        "oven.bun-vscode",
-        "biomejs.biome"
+        "astro-build.astro-vscode",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-containers",
+        "oxc.oxc-vscode"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash"
       }
     }
   },
-  "postStartCommand": "ln -sfn /mnt/host-claude ~/.claude",
   "features": {
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:latest": {
-      "moby": false
-    },
     "ghcr.io/anthropics/devcontainer-features/claude-code:latest": {}
   }
 }

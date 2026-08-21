@@ -1,0 +1,36 @@
+---
+import type { ContactInfo } from '../types';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  contact: ContactInfo;
+}
+
+const { contact } = Astro.props;
+---
+
+<section id="contact" class="section contact" aria-labelledby="contact-title">
+  <SectionHeading id="contact-title" title="Get in Touch" intro="連絡先はこちら" />
+  <address>
+    <ul class="contact-list">
+      <li>
+        <a class="contact-link" href={`mailto:${contact.email}`}>
+          <img class="contact-icon" src="/email-icon.svg" width="24" height="24" alt="" />
+          <span class="stack">
+            <span class="contact-type">Email</span>
+            <span>{contact.email}</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="contact-link" href={contact.github}>
+          <img class="contact-icon" src="/github-icon.svg" width="24" height="24" alt="" />
+          <span class="stack">
+            <span class="contact-type">GitHub</span>
+            <span>{contact.github}</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </address>
+</section>
