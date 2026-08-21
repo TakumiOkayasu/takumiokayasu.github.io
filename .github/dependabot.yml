@@ -9,6 +9,11 @@ updates:
       time: '09:00'
       timezone: 'Asia/Tokyo'
     open-pull-requests-limit: 10
+    ignore:
+      # Astro check requires the programmatic compiler API that TypeScript 7 does not expose yet.
+      - dependency-name: 'typescript'
+        versions:
+          - '>=7.0.0'
     groups:
       # Minor and patch updates are grouped and auto-merged
       minor-and-patch:
