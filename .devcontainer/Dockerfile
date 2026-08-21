@@ -1,4 +1,4 @@
-FROM node:24.19.0-bookworm-slim
+FROM node:lts-bookworm-slim
 
 ENV TZ=Asia/Tokyo \
     LANG=ja_JP.UTF-8 \
@@ -6,8 +6,7 @@ ENV TZ=Asia/Tokyo \
     LC_ALL=ja_JP.UTF-8 \
     DEVCONTAINER=true
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
         git \
         locales \
