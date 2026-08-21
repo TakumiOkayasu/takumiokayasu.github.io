@@ -1,0 +1,36 @@
+---
+import type { Experience as ExperienceItem } from '../types';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  experiences: ExperienceItem[];
+}
+
+const { experiences } = Astro.props;
+---
+
+<section id="experience" class="section experience" aria-labelledby="experience-title">
+  <SectionHeading
+    id="experience-title"
+    title="Work Experience"
+    intro="キャリアのタイムライン"
+  />
+  <ol class="timeline">
+    {
+      experiences.map(experience => (
+        <li class="timeline-item">
+          <article class="card">
+            <header class="stack">
+              <h3>{experience.title}</h3>
+              <p class="company">{experience.company}</p>
+              <p class="meta">
+                {experience.position}<span> · </span>{experience.period}
+              </p>
+            </header>
+            <p>{experience.description}</p>
+          </article>
+        </li>
+      ))
+    }
+  </ol>
+</section>

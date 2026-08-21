@@ -1,67 +1,24 @@
 {
   "name": "takumiokayasu.github.io",
-  "private": true,
   "version": "0.1.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bunx --bun vite",
-    "build": "bun run type-check && bunx --bun vite build",
-    "lint": "bunx biome check --write ./src",
-    "preview": "bunx --bun vite preview",
-    "test": "bun test",
-    "test:watch": "bun test --watch",
-    "test:coverage": "bun test --coverage",
-    "test:unit": "bun test src/**/*.test.{ts,tsx}",
-    "test:vitest": "bunx --bun vitest",
-    "test:vitest:ui": "bunx --bun vitest --ui",
-    "test:vitest:run": "bunx --bun vitest run",
-    "cy:open": "bunx cypress open",
-    "cy:run": "bunx cypress run",
-    "test:e2e": "bunx start-server-and-test 'bun run dev' http://localhost:5173 'bun run cy:run'",
-    "test:e2e:open": "bunx start-server-and-test 'bun run dev' http://localhost:5173 'bun run cy:open'",
-    "test:all": "bun run test:unit && bun run test:e2e",
-    "type-check": "tsc --noEmit -p tsconfig.app.json",
-    "type-check:test": "tsc --noEmit -p tsconfig.test.json",
-    "clean": "rm -rf dist coverage .turbo",
-    "clean:deps": "rm -rf node_modules bun.lockb",
-    "reinstall": "bun run clean:deps && bun install"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:astro": "astro check"
   },
   "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.3",
-    "tailwindcss": "^4.1.11"
+    "astro": "^7.2.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.8",
-    "@happy-dom/global-registrator": "^20.0.11",
-    "@rollup/rollup-linux-arm64-gnu": "^4.45.1",
-    "@swc/core": "^1.12.11",
-    "@tailwindcss/postcss": "^4.1.11",
-    "@tailwindcss/vite": "^4.1.11",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^7.0.0",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/bun": "^1.2.19",
-    "@types/jsdom": "^30.0.0",
-    "@types/node": "^26.1.2",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react-swc": "^4.2.2",
-    "@vitest/coverage-v8": "^4.0.15",
-    "@vitest/ui": "^4.0.15",
-    "autoprefixer": "^10.4.21",
-    "cypress": "^15.7.1",
-    "globals": "^17.4.0",
-    "happy-dom": "^20.0.11",
-    "jsdom": "^30.0.1",
-    "postcss": "^8.5.6",
-    "rollup": "^4.45.1",
-    "start-server-and-test": "^3.0.0",
-    "typescript": "~7.0.2",
-    "typescript-eslint": "^8.35.1",
-    "vite": "^8.0.3",
-    "vitest": "^4.0.15"
-  }
+    "@astrojs/check": "^0.9.10",
+    "typescript": "~6.0.3",
+    "vite-plus": "0.2.9"
+  },
+  "engines": {
+    "node": ">=24.11.0"
+  },
+  "packageManager": "pnpm@11.22.0"
 }

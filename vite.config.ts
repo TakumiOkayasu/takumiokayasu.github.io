@@ -1,12 +1,19 @@
-import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react-swc";
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite-plus';
 
-// https://vite.dev/config/
 export default defineConfig({
-	plugins: [react(), tailwindcss()],
-	server: {
-		host: true,
-		port: 5173,
-	},
+  lint: {
+    ignorePatterns: ['.astro/**', 'dist/**'],
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+  },
+  fmt: {
+    printWidth: 100,
+    semi: true,
+    singleQuote: true,
+  },
+  test: {
+    include: ['tests/**/*.test.ts'],
+  },
 });

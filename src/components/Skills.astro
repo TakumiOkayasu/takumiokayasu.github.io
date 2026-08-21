@@ -1,0 +1,28 @@
+---
+import type { SkillCategory } from '../types';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  categories: SkillCategory[];
+}
+
+const { categories } = Astro.props;
+---
+
+<section id="skills" class="section skills" aria-labelledby="skills-title">
+  <SectionHeading id="skills-title" title="Skills" />
+  <div class="stack">
+    {
+      categories.map((category, index) => (
+        <section class="skill-group" aria-labelledby={`skill-group-${index}`}>
+          <h3 id={`skill-group-${index}`}>{category.title}</h3>
+          <ul class="skill-list">
+            {category.skills.map(skill => (
+              <li class="chip">{skill}</li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</section>

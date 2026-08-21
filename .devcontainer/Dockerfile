@@ -1,61 +1,26 @@
-FROM oven/bun:latest
-
-ARG USER_NAME
-ARG USER_UID
-ARG USER_GID
+FROM node:24.19.0-bookworm-slim
 
 ENV TZ=Asia/Tokyo \
     LANG=ja_JP.UTF-8 \
-    LANGUAGE=ja_JP:jp \
+    LANGUAGE=ja_JP:ja \
     LC_ALL=ja_JP.UTF-8 \
     DEVCONTAINER=true
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
-    bash \
-    curl \
-    git \
-    sudo \
-    ssh \
-    unzip \
-    locales \
-    tzdata \
-    build-essential \
-    ca-certificates \
-    libicu-dev \
-    nodejs \
-    npm \
-    webp \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        git \
+        locales \
+        openssh-client \
+        sudo \
+        tzdata \
     && locale-gen ja_JP.UTF-8 \
-    && localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
-
-# Node.js LTSのインストール（エラーハンドリング付き）
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - || { \
-    echo "NodeSource setup failed, falling back to default nodejs"; \
-    apt-get install -y nodejs npm; \
-    } \
-    && apt-get install -y nodejs \
+    && corepack enable \
+    && corepack install --global pnpm@11.22.0 \
+    && echo "node ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/node \
+    && chmod 0440 /etc/sudoers.d/node \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# npmとpnpmのインストール（エラーチェック付き）
-RUN if command -v npm &> /dev/null; then \
-    npm install -g npm@latest pnpm; \
-    else \
-    echo "npm not found, skipping global package installation"; \
-    fi
-
-WORKDIR /tmp/scripts/
-
-# terminal config
-RUN curl -o ./create_user.sh https://raw.githubusercontent.com/TakumiOkayasu/shellscript_utility/refs/heads/main/create_user.sh \
-    && curl -o ./terminal_config.sh https://raw.githubusercontent.com/TakumiOkayasu/shellscript_utility/refs/heads/main/terminal_config.sh \
-    && chmod 777 ./*.sh \
-    && ./create_user.sh \
-    && ./terminal_config.sh \
-    && rm *.sh
-
+USER node
 WORKDIR /workspaces
-USER ${USER_NAME}
-SHELL ["/bin/bash", "-c"]
