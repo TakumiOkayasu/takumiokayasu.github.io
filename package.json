@@ -10,12 +10,12 @@
     "check:astro": "astro check"
   },
   "dependencies": {
-    "astro": "^7.4.7"
+    "astro": "^7.4.11"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "typescript": "~6.0.3",
-    "vite-plus": "1.5.0"
+    "vite-plus": "1.6.0"
   },
   "engines": {
     "node": ">=24.11.0"
