@@ -10,6 +10,12 @@ updates:
       timezone: 'Asia/Tokyo'
     open-pull-requests-limit: 10
     ignore:
+      # Update Vite+, the Vite core override, and Vitest together after compatibility checks.
+      - dependency-name: 'vite-plus'
+        update-types:
+          - 'version-update:semver-major'
+          - 'version-update:semver-minor'
+          - 'version-update:semver-patch'
       # Astro check requires the programmatic compiler API that TypeScript 7 does not expose yet.
       - dependency-name: 'typescript'
         versions:
