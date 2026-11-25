@@ -1,10 +1,6 @@
 overrides:
-  vite: npm:@voidzero-dev/vite-plus-core@0.2.9
-  vitest: 4.1.10
+  vite: npm:@voidzero-dev/vite-plus-core@8.3.8000
+  vitest: 5.1.0
 
 allowBuilds:
   esbuild: true
-
-peerDependencyRules:
-  allowedVersions:
-    vite: 0.2.9
